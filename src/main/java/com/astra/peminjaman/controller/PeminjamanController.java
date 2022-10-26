@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,13 +49,18 @@ public class PeminjamanController {
 
     @PostMapping
     @Transactional
-    public String simpan(@Valid Peminjaman peminjaman, BindingResult bind, RedirectAttributes redir, ModelMap mm){
+    public String simpan(@Valid Peminjaman peminjaman, Errors bind, RedirectAttributes redir, ModelMap mm){
         System.out.println("bind : " + bind.toString());
         System.out.println("peminjaman : " + peminjaman.toString());
 //        try {
-//            if (bind.hasErrors()) {
+//        LocalDateTime dt = LocalDateTime.from(peminjaman.getTanggalPeminjaman().toLocalTime());
+            if (bind.hasErrors()) {
 //                throw new Exception("Error : " + bind.getFieldError());
-//            }
+                mm.addAttribute("dataPelanggan", pelangganRepository.findAll());
+                mm.addAttribute("dataDvd", dvdRepository.findAll());
+                mm.addAttribute("data",peminjaman);
+                return "peminjaman/form";
+            }
             peminjamanRepository.save(peminjaman);
             redir.addFlashAttribute("success", "Success saved data!");
             return "redirect:/peminjaman";
