@@ -29,7 +29,5 @@ public class Peminjaman {
     @JoinColumn(name = "id_dvd", nullable = false)
     private Dvd dvd;
 
-    @NotNull
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime tanggalPeminjaman;
 }

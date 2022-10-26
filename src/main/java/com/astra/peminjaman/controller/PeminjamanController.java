@@ -49,10 +49,21 @@ public class PeminjamanController {
     @PostMapping
     @Transactional
     public String simpan(@Valid Peminjaman peminjaman, BindingResult bind, RedirectAttributes redir, ModelMap mm){
-        System.out.println("peminjaman : "+ peminjaman.toString());
-        peminjamanRepository.save(peminjaman);
-        redir.addFlashAttribute("success", "Success saved data!");
-        return "redirect:/peminjaman";
-//        return "peminjaman/list";
+        System.out.println("bind : " + bind.toString());
+        System.out.println("peminjaman : " + peminjaman.toString());
+//        try {
+//            if (bind.hasErrors()) {
+//                throw new Exception("Error : " + bind.getFieldError());
+//            }
+            peminjamanRepository.save(peminjaman);
+            redir.addFlashAttribute("success", "Success saved data!");
+            return "redirect:/peminjaman";
+//        }catch (Exception e){
+//            mm.addAttribute("dataPelanggan", pelangganRepository.findAll());
+//            mm.addAttribute("dataDvd", dvdRepository.findAll());
+//            mm.addAttribute("data",peminjaman);
+//            mm.addAttribute("error", e.getMessage());
+//            return "peminjaman/form";
+//        }
     }
 }
