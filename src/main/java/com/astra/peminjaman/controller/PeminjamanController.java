@@ -14,6 +14,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -49,7 +50,7 @@ public class PeminjamanController {
 
     @PostMapping
     @Transactional
-    public String simpan(@Valid Peminjaman peminjaman, Errors bind, RedirectAttributes redir, ModelMap mm){
+    public String simpan(@Valid @ModelAttribute("data") Peminjaman peminjaman, BindingResult bind, RedirectAttributes redir, ModelMap mm){
         System.out.println("bind : " + bind.toString());
         System.out.println("peminjaman : " + peminjaman.toString());
 //        try {

@@ -32,7 +32,7 @@ public class Peminjaman {
     @JoinColumn(name = "id_dvd", nullable = false)
     private Dvd dvd;
 
-    @NotNull(message = "Not null")
+    @NotNull
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm")
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
