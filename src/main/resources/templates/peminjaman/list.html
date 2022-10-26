@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layout/layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Daftar Peminjaman</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Peminjaman</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Peminjaman</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">List</h3>
+                            <div class="float-right">
+                                <a th:href="${'/form'}" class="btn btn-success">tambah</a>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+<!--                                    <th style="width: 10px">#</th>-->
+                                    <th>Pelanggan</th>
+                                    <th>Judul Film</th>
+                                    <th>Tanggal Pinjam</th>
+<!--                                    <th style="width: 40px">Action</th>-->
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="data : ${datas}">
+                                    <td scope="col" th:text="${data.pelanggan.nama}"></td>
+                                    <td scope="col" th:text="${data.dvd.judulFilm}"></td>
+                                    <td scope="col" th:text="${data.tanggalPeminjaman}"></td>
+
+<!--                                    <td scope="col">-->
+<!--                                        <a class="btn btn-primary" role="button" th:href="${'/edit/'+u.id}"><span>Edit</span></a>-->
+<!--                                        <a class="btn btn-danger" role="button" th:href="${'/hapus/'+u.id}"><span>Remove</span></a>-->
+<!--                                    </td>-->
+                                </tr>
+                                <tr th:if="${#lists.isEmpty(datas.content)}">
+                                    <td colspan="3" class="text-center"> Data not Found! </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer clearfix">
+                            <ul class="pagination pagination-sm m-0 float-right" sd:pagination="full">
+<!--                                <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>-->
+<!--                                <li class="page-item"><a class="page-link" href="#">1</a></li>-->
+<!--                                <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+<!--                                <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+<!--                                <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>-->
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- Main content -->
+
+</div>
+
+</body>
+</html>
